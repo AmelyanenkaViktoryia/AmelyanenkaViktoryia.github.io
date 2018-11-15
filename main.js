@@ -43,31 +43,37 @@ function btnCallback() {
 
 function renderSelectItem(news){ 
   let container = document.getElementById('news');
-  let names = news.sources.map(function(x){ 
-    return `<option>${x.id}</option>` 
-  }) 
-  let ul = document.createElement('select'); 
-  ul.setAttribute('id', 'select');
-  ul.setAttribute('class', 'col-md-6');
-  for(var li of names){ 
-    ul.innerHTML += li; 
-  } 
-  container.parentNode.insertBefore(ul, container); 
+  let selectElement = document.createElement('select'); 
+  selectElement.setAttribute('id', 'select');
+  selectElement.setAttribute('class', 'col-md-6');
+
+  let sourcesOptionList = news.sources.map(function(source) { 
+    return `<option>${source.id}</option>` 
+  }); 
+  
+  let sortedList = sourcesOptionList.reduce(function(sum, item) {    
+    return sum + item;
+  }, '');
+  
+  selectElement.innerHTML = sortedList;
+  container.parentNode.insertBefore(selectElement, container);
 }
 
 function renderNews(news){     
   let newsContainer = document.getElementById('news');
+  let orderedList = document.createElement('ol');
   newsContainer.innerHTML = '';
-  let names = news.articles.map(function(x){ 
-  return `<h1>${x.title}</h1>
-  <img src="${x.urlToImage}">
-  <p>${x.content}</p>
-  <p>${x.author}</p>
-  <a href="${x.url}">Read more</a>` 
-  }) 
-  let ul = document.createElement('ol'); 
-  for(var li of names){ 
-  ul.innerHTML += li; 
+
+  let articlesList = news.articles.map(function(article) { 
+    return `<h1>${article.title}</h1>
+    <img src="${article.urlToImage}">
+    <p>${article.content}</p>
+    <p>${article.author}</p>
+    <a href="${article.url}">Read more</a>` 
+  });  
+
+  for(var item of articlesList){ 
+    orderedList.innerHTML += item; 
   } 
-  newsContainer.appendChild(ul); 
+  newsContainer.appendChild(orderedList); 
 }

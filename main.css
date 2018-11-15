@@ -9,6 +9,16 @@ body {
   padding: 0;
 }
 #news img {
-  width: 400px;
+  max-width: 100%;
   height: auto;
+}
+.required-text {
+  font-size: 0.9rem;
+}
+.btn.btn-success {
+  display: block;
+  margin: 0 0 15px;
+}
+#select {
+  margin: 0 0 15px;
 }
