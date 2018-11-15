@@ -1,44 +1,43 @@
 const btn = document.getElementById('btn').addEventListener('click', btnCallback);
 
-function getSources() {
-  let xhr = new XMLHttpRequest();
-  let result;
-  xhr.open('GET', 'https://newsapi.org/v2/sources?apiKey=15815122ee5a4cbcb7f70331e12826a7', false);
-  xhr.send();
-  if (xhr.status != 200) {
-    alert( xhr.status + ': ' + xhr.statusText );
-  } else {
-    result = xhr.responseText;
-    result = JSON.parse(result);
-    renderSelectItem(result);
-  }
-}
-
-getSources(); 
+fetch('https://newsapi.org/v2/sources?apiKey=15815122ee5a4cbcb7f70331e12826a7')
+  .then(
+    function(response) {
+    	if (response.status !== 200) {  
+        console.log('Looks like there was a problem. Status Code: ' + response.status);  
+        return;  
+      }
+      response.json().then(function(data) {  
+        renderSelectItem(data);
+      });
+    }    
+  )
+  .catch(function(err) {  
+    console.log('Fetch Error', err);  
+  });
 
 function getSelectValue() {
-  let el = document.getElementById('select');
-  let selectedNewChannel = el.value;
+  let select = document.getElementById('select');
+  let selectedNewChannel = select.value;
   return selectedNewChannel;
 }
 
-function requestNews(){
-  let xhr = new XMLHttpRequest();
-  let result;
-  let url = `https://newsapi.org/v2/top-headlines?sources=${getSelectValue()}&apiKey=15815122ee5a4cbcb7f70331e12826a7`;
-  xhr.open('GET', url, false);
-  xhr.send();
-  if (xhr.status != 200) {
-    alert( xhr.status + ': ' + xhr.statusText );
-  } else {
-    result = xhr.responseText;
-    result = JSON.parse(result);
-  }
-  renderNews(result);
-}
-
 function btnCallback() {
-  requestNews();
+  fetch(`https://newsapi.org/v2/top-headlines?sources=${getSelectValue()}&apiKey=15815122ee5a4cbcb7f70331e12826a7`)
+	.then(
+  	function(response) {
+    	if (response.status !== 200) {  
+        console.log('Looks like there was a problem. Status Code: ' + response.status);  
+        return;  
+      }
+      response.json().then(function(data) {  
+        renderNews(data);
+      });
+    }
+  )
+  .catch(function(err) {  
+    console.log('Fetch Error', err);  
+  });
 }
 
 function renderSelectItem(news){ 
@@ -47,33 +46,29 @@ function renderSelectItem(news){
   selectElement.setAttribute('id', 'select');
   selectElement.setAttribute('class', 'col-md-6');
 
-  let sourcesOptionList = news.sources.map(function(source) { 
-    return `<option>${source.id}</option>` 
-  }); 
+  let sourcesOptionList = news.sources.map(source => `<option>${source.id}</option>`); 
   
-  let sortedList = sourcesOptionList.reduce(function(sum, item) {    
-    return sum + item;
-  }, '');
-  
+  let sortedList = sourcesOptionList.reduce((sum, item) => sum + item, '');
+
   selectElement.innerHTML = sortedList;
   container.parentNode.insertBefore(selectElement, container);
 }
 
 function renderNews(news){     
   let newsContainer = document.getElementById('news');
-  let orderedList = document.createElement('ol');
+  let requiredText = document.querySelector(".required-text");
   newsContainer.innerHTML = '';
 
-  let articlesList = news.articles.map(function(article) { 
-    return `<h1>${article.title}</h1>
+  let articlesList = news.articles.map(article => 
+    `<h1>${article.title}</h1>
     <img src="${article.urlToImage}">
     <p>${article.content}</p>
     <p>${article.author}</p>
     <a href="${article.url}">Read more</a>` 
-  });  
+  );  
 
-  for(var item of articlesList){ 
-    orderedList.innerHTML += item; 
-  } 
-  newsContainer.appendChild(orderedList); 
+  let sortedArticleList = articlesList.reduce((sum, item) => sum + item, '');
+
+  newsContainer.innerHTML = sortedArticleList;
+  requiredText.parentNode.insertBefore(newsContainer, requiredText);
 }
