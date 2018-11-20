@@ -9,12 +9,6 @@
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
-    "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.6"
-  },
-  "browserslist": [
-    "last 1 version",
-    "> 1%",
-    "IE 11"
-  ]
+  }
 }
