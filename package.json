@@ -1,14 +1,21 @@
 {
   "name": "FrontCamp",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "build": "babel main.js --out-file compiled.js",
-    "watch": "babel main.js --watch --out-file compiled.js"
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production"
   },
   "homepage": "https://github.com/AmelyanenkaViktoryia/AmelyanenkaViktoryia.github.io#readme",
   "devDependencies": {
-    "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
-    "@babel/preset-env": "^7.1.6"
+    "@babel/preset-env": "^7.1.6",
+    "babel-loader": "^8.0.4",
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "lodash": "^4.17.11"
   }
 }
