@@ -1,0 +1,14 @@
+{
+  "name": "FrontCamp",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "babel main.js --out-file compiled.js",
+    "watch": "babel main.js --watch --out-file compiled.js"
+  },
+  "homepage": "https://github.com/AmelyanenkaViktoryia/AmelyanenkaViktoryia.github.io#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6"
+  }
+}
