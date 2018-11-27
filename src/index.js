@@ -1,3 +1,4 @@
+import './main.css';
 import {getListFromNewsapi, btnCallback} from "./fetching";
 
 getListFromNewsapi();
