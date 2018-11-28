@@ -1,24 +1,32 @@
 body {
   height: 100vh;
 }
+
 .container {
   height: 100%;
   padding: 20px 0 0; 
 }
+
 .container ol {
   padding: 0;
 }
+
 #news img {
   max-width: 100%;
   height: auto;
 }
+
 .required-text {
   font-size: 0.9rem;
 }
+
 .btn.btn-success {
   display: block;
   margin: 0 0 15px;
 }
+
 #select {
   margin: 0 0 15px;
 }
+
+/*# sourceMappingURL=main.css.map*/

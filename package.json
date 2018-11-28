@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development",
-    "prod": "webpack --mode production"
+    "dev": "webpack-dev-server --open --config webpack.dev.js",
+    "prod": "webpack --config webpack.prod.js"
   },
   "homepage": "https://github.com/AmelyanenkaViktoryia/AmelyanenkaViktoryia.github.io#readme",
   "devDependencies": {
@@ -16,9 +16,11 @@
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.26.0",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0"
+    "@babel/polyfill": "^7.0.0",
+    "webpack-merge": "^4.1.4"
   }
 }
