@@ -5,16 +5,18 @@ export function getListFromNewsapi() {
   .then(
     function(response) {
     	if (response.status !== 200) {  
-        console.log('Looks like there was a problem. Status Code: ' + response.status);  
-        return;  
+        throw response;
       }
       response.json().then(function(data) {  
         renderSelectItem(data);
       });
     }    
   )
-  .catch(function(err) {  
-    console.log('Fetch Error', err);  
+  .catch(function(responseError) {  
+    import('./errors').then((module)=>{
+        const errorSingleton = new module.Singleton(responseError);
+        errorSingleton.showError();
+    })
   });
 } 
 
