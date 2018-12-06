@@ -26,8 +26,7 @@ export class Singleton {
     }
 
     showError(responseError){
-        console.log(`Response Error:`);
-        console.log(responseError);
+        console.log(`Response Error:`, responseError);
         this.textField.innerHTML = `<p>Response Error: <b>${this.status} </b> (${responseError.statusText})</p>
                                 <p>url: ${responseError.url}</p>`
         document.getElementById('cont').appendChild(this.bg);

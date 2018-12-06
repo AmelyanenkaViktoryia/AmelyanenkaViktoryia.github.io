@@ -18,7 +18,7 @@ export class GetRequest {
       this.url = url;
       this.resolveCallback = resolveCallback;
     }
-    getListFromNewsapi(){
+    getList(){
       let resolveCallback = this.resolveCallback;
       fetch(this.url)
       .then(
@@ -46,7 +46,7 @@ export class GetRequest {
       this.resolveCallback = resolveCallback;
       this.params = params;
     }
-    getListFromNewsapi(){
+    getList(){
         let resolveCallback = this.resolveCallback;
         fetch(this.url, this.params)
         .then(
