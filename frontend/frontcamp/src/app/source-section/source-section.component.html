@@ -1,0 +1,23 @@
+<section class="wrapper-source">  
+  <div class="wrapper-article-manipulation">
+    <div class="dropdown">
+      <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Select Source
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#" *ngFor="let source of sourceList" (click)="selectAttribute(source)">{{source}}</a>
+      </div>
+    </div>
+    <div class="input-group col-sm">
+      <input type="text" class="form-control" placeholder="Type your text..." aria-label="Type your text..." aria-describedby="button-filter">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="button-filter">Filter</button>
+      </div>
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input">
+      <label class="form-check-label">Created by me</label>
+    </div>
+    <button type="button" class="btn btn-primary add-article">Add Article</button>
+  </div>
+</section>
