@@ -9,6 +9,8 @@ export class ArticleService {
 
   public filterArticleName: EventEmitter<string> = new EventEmitter();
 
+  public selectedSource: EventEmitter<string> = new EventEmitter();
+
   constructor() { }   
 
 }

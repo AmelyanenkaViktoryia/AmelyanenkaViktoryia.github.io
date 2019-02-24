@@ -15,6 +15,7 @@ import { ArticleService } from './article.service';
 import { NewsTitlePipe } from './news-title.pipe';
 import { ArticleFilterPipe } from './article-filter.pipe';
 import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 const AppRoutes: Routes = [  
   {path: '', component: MainComponent},
@@ -38,7 +39,8 @@ const AppRoutes: Routes = [
     RouterModule.forRoot(AppRoutes),
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [ArticleService],
   bootstrap: [AppComponent]

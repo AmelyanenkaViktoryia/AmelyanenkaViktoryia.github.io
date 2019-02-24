@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../article.service';
 import { Article } from '../article.interface'
+import { ApiServiceService } from '../api-service.service';
 
 @Component({
   selector: 'app-news-section',
@@ -71,13 +72,22 @@ export class NewsSectionComponent implements OnInit {
     }
   ]
   public char: string;
-  constructor(private articleService: ArticleService){}
+  constructor(private articleService: ArticleService, private apiService: ApiServiceService){}  
 
   ngOnInit() {
-    this.articleService.filterArticleName.subscribe((data: string)=>{
+    this.articleService.filterArticleName.subscribe((data: string) => {
       this.char = data;
-    })
-  }
+    })  
 
+    this.articleService.selectedSource.subscribe((id: string) => {
+      //this.newsList = data;
+      console.log('id', id);
+      this.apiService.getArticlesBySource(id).subscribe((list: any) => {
+        //console.log('list', list);
+        this.newsList = list.articles;
+      })
+    })
+    
+  }
 }
 

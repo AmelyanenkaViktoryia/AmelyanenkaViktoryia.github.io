@@ -1,4 +1,5 @@
 <section class="wrapper-news">
+  <!-- <button type="button" class="btn btn-primary" (click)="getNews()">Refresh</button> -->
   <div class="wrapper-one-news" *ngFor="let news of newsList | articleFilter : char">
     <aside class="left-side col-8">
       <img src="{{news.urlToImage}}">
