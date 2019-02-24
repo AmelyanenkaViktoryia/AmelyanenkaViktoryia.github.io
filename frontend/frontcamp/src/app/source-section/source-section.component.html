@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="input-group col-sm">
-      <input type="text" class="form-control" placeholder="Type your text..." aria-label="Type your text..." aria-describedby="button-filter">
+      <input type="text" [formControl]="filterControl" class="form-control" placeholder="Type your text..." aria-label="Type your text..." aria-describedby="button-filter">
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="button" id="button-filter">Filter</button>
       </div>
@@ -18,6 +18,6 @@
       <input type="checkbox" class="form-check-input">
       <label class="form-check-label">Created by me</label>
     </div>
-    <button type="button" class="btn btn-primary add-article">Add Article</button>
+    <button type="button" class="btn btn-primary add-article" [routerLink]="['/add']">Add Article</button>
   </div>
 </section>

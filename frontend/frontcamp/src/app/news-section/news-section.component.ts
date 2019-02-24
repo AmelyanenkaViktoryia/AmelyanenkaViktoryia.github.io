@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-interface News {
-  urlToImage: string;
-  title: string;
-  description: string;
-  publishedAt: string;
-}
+import { ArticleService } from '../article.service';
+import { Article } from '../article.interface'
 
 @Component({
   selector: 'app-news-section',
@@ -13,7 +8,7 @@ interface News {
   styleUrls: ['./news-section.component.less']
 })
 export class NewsSectionComponent implements OnInit {
-  public newsList: News[] = [
+  public newsList: Article[] = [
     {
       urlToImage: 'https://images.wsj.net/im-54509/social',
       title: 'Pence Call to Pressure Tehran Falls on Deaf Ears...',
@@ -75,9 +70,13 @@ export class NewsSectionComponent implements OnInit {
       publishedAt: '2019-02-16T05:30:00Z'
     }
   ]
-  constructor() { }
+  public char: string;
+  constructor(private articleService: ArticleService){}
 
   ngOnInit() {
+    this.articleService.filterArticleName.subscribe((data: string)=>{
+      this.char = data;
+    })
   }
 
 }

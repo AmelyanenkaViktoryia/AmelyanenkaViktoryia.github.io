@@ -1,5 +1,5 @@
 <section class="wrapper-news">
-  <div class="wrapper-one-news" *ngFor="let news of newsList">
+  <div class="wrapper-one-news" *ngFor="let news of newsList | articleFilter : char">
     <aside class="left-side col-8">
       <img src="{{news.urlToImage}}">
       <h3>{{news.title}}</h3>
@@ -7,7 +7,7 @@
       <a href="#">Read more...</a>
     </aside>
     <aside class="right-side col-4">
-      <p>Date: {{news.publishedAt}}</p>
+      <p>Date: {{news.publishedAt | date:'fullDate'}}</p>
       <div class="wrapper-btn">
         <button type="button" class="btn btn-success">Edit</button>      
         <button type="button" class="btn btn-success">Delete</button>
