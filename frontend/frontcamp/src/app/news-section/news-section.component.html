@@ -1,5 +1,5 @@
 <section class="wrapper-news">
-  <!-- <button type="button" class="btn btn-primary" (click)="getNews()">Refresh</button> -->
+  <div *ngIf="newsList.length === 0">No data. Select Source</div>
   <div class="wrapper-one-news" *ngFor="let news of newsList | articleFilter : char">
     <aside class="left-side col-8">
       <img src="{{news.urlToImage}}">
@@ -9,11 +9,11 @@
     </aside>
     <aside class="right-side col-4">
       <p>Date: {{news.publishedAt | date:'fullDate'}}</p>
-      <div class="wrapper-btn">
-        <button type="button" class="btn btn-success">Edit</button>      
-        <button type="button" class="btn btn-success">Delete</button>
+      <div class="wrapper-btn" *ngIf="isLocalNews">
+        <button type="button" class="btn btn-success" [routerLink]="['/edit', news._id]">Edit</button>      
+        <button type="button" class="btn btn-success" (click)="deleteArticle(news._id)">Delete</button>
       </div>      
     </aside>
   </div> 
 </section>
-<button type="button" class="btn btn-success load-more">Load More</button>
+

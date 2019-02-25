@@ -15,4 +15,12 @@ export class ApiServiceService {
   public getArticlesBySource(id: string) {
     return this.httpClient.get<any>(`https://newsapi.org/v2/top-headlines?sources=${id}&apiKey=15815122ee5a4cbcb7f70331e12826a7`);
   }  
+
+  public getLocalNews() {
+    return this.httpClient.get<any>(`http://localhost:8080/news`);
+  }  
+
+  public removeLocalArticle(id: string) {
+    return this.httpClient.delete<any>(`http://localhost:8080/news/${id}`);
+  }  
 }

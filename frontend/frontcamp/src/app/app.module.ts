@@ -19,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 const AppRoutes: Routes = [  
   {path: '', component: MainComponent},
-  {path: 'add', component: AddArticleComponent}
+  {path: 'add', component: AddArticleComponent},
+  {path: 'edit/:id', component: AddArticleComponent, data : { mode : 'Edit' }}
 ];
 
 @NgModule({
