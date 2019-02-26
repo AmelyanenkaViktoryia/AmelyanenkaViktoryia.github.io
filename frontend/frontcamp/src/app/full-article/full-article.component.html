@@ -1,0 +1,20 @@
+<section class="wrapper-news">
+  <div *ngIf="!article">No data. Select Source</div>
+  <div class="wrapper-one-news" *ngIf="article">
+    <aside class="left-side col-8">
+      <img src="{{article.urlToImage}}"style="width: 50%; height: auto">
+      <h3>{{article.title}}</h3>
+      <p><b>{{article.description}}</b></p>
+      <p>{{article.content}}</p>
+      <br>
+      <p><i>{{article.author}}</i></p>
+    </aside>
+    <aside class="right-side col-4">
+      <p>Date: {{article.publishedAt | date:'fullDate'}}</p>
+      <div class="wrapper-btn" >
+        <button type="button" class="btn btn-success" [routerLink]="['/edit', articleId]">Edit</button>      
+        <button type="button" class="btn btn-success" (click)="deleteArticle(articleId)">Delete</button>
+      </div>      
+    </aside>
+  </div> 
+</section>

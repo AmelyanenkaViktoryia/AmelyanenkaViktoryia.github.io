@@ -7,6 +7,23 @@ import { LoginPartComponent } from './login-part/login-part.component';
 import { SourceSectionComponent } from './source-section/source-section.component';
 import { NewsSectionComponent } from './news-section/news-section.component';
 import { SourceNameComponent } from './source-name/source-name.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AddArticleComponent } from './add-article/add-article.component';
+import { MainComponent } from './main/main.component';
+import { FooterComponent } from './footer/footer.component';
+import { ArticleService } from './article.service';
+import { NewsTitlePipe } from './news-title.pipe';
+import { ArticleFilterPipe } from './article-filter.pipe';
+import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FullArticleComponent } from './full-article/full-article.component';
+
+const AppRoutes: Routes = [ 
+  {path: '', component: MainComponent},
+  {path: 'add', component: AddArticleComponent},
+  {path: 'edit/:id', component: AddArticleComponent, data : { mode : 'Edit' }},
+  {path: ':id', component: FullArticleComponent}
+];
 
 @NgModule({
   declarations: [
@@ -14,13 +31,22 @@ import { SourceNameComponent } from './source-name/source-name.component';
     LoginPartComponent,
     SourceSectionComponent,
     NewsSectionComponent,
-    SourceNameComponent
+    SourceNameComponent,
+    AddArticleComponent,
+    MainComponent,
+    FooterComponent,
+    NewsTitlePipe,
+    ArticleFilterPipe,
+    FullArticleComponent
   ],
-  imports: [
+  imports: [    
+    RouterModule.forRoot(AppRoutes),
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ArticleService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { }  

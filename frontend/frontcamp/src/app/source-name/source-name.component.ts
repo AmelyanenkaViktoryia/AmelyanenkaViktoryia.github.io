@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { EventEmitter } from 'events';
+import { ArticleService } from '../article.service';
 
 @Component({
   selector: 'app-source-name',
@@ -7,11 +7,16 @@ import { EventEmitter } from 'events';
   styleUrls: ['./source-name.component.less']
 })
 export class SourceNameComponent implements OnInit {
-  @Input() title: string;  
 
-  constructor() { }
+  //@Input() title: string;  
+  public title: string = 'Some News';
+  
+  constructor(private articleService: ArticleService){}
 
   ngOnInit() {
+    this.articleService.updatedDataValue.subscribe((data: string)=>{
+      this.title = data;
+    })
   }
 
 }
