@@ -1,5 +1,5 @@
 <section class="wrapper-news">
-  <div *ngIf="!article">No data. Select Source</div>
+  <div *ngIf="!article" class="no-data">No data. Select Source</div>
   <div class="wrapper-one-news" *ngIf="article">
     <aside class="left-side col-8">
       <img src="{{article.urlToImage}}"style="width: 50%; height: auto">
