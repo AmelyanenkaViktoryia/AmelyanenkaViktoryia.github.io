@@ -16,11 +16,13 @@ import { NewsTitlePipe } from './news-title.pipe';
 import { ArticleFilterPipe } from './article-filter.pipe';
 import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FullArticleComponent } from './full-article/full-article.component';
 
-const AppRoutes: Routes = [  
+const AppRoutes: Routes = [ 
   {path: '', component: MainComponent},
   {path: 'add', component: AddArticleComponent},
-  {path: 'edit/:id', component: AddArticleComponent, data : { mode : 'Edit' }}
+  {path: 'edit/:id', component: AddArticleComponent, data : { mode : 'Edit' }},
+  {path: ':id', component: FullArticleComponent}
 ];
 
 @NgModule({
@@ -34,7 +36,8 @@ const AppRoutes: Routes = [
     MainComponent,
     FooterComponent,
     NewsTitlePipe,
-    ArticleFilterPipe
+    ArticleFilterPipe,
+    FullArticleComponent
   ],
   imports: [    
     RouterModule.forRoot(AppRoutes),

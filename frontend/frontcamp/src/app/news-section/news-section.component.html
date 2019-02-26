@@ -5,7 +5,7 @@
       <img src="{{news.urlToImage}}">
       <h3>{{news.title}}</h3>
       <p>{{news.description}}</p>
-      <a href="#">Read more...</a>
+      <a href="#" [routerLink]="['/', news._id]"  *ngIf="isLocalNews" >Read more...</a>
     </aside>
     <aside class="right-side col-4">
       <p>Date: {{news.publishedAt | date:'fullDate'}}</p>

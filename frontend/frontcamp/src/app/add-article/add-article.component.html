@@ -27,7 +27,8 @@
         </div>
         <div class="form-group">
           <label for="date">Date</label>
-          <input type="text" class="form-control" id="date" [formControl]="publishedAtControl">
+          <input type="date" class="form-control" id="date" [formControl]="publishedAtControl" *ngIf="mode === 'Add'">
+          <input type="text" class="form-control" id="date" [formControl]="publishedAtControl" *ngIf="mode === 'Edit'">
         </div>
         <div class="form-group">
           <label for="author">Author</label>
@@ -38,7 +39,8 @@
           <input type="text" [formControl]="sourceControl" class="form-control" id="source-url">
         </div>
         <div class="wrapper-btn">
-          <button type="button" class="btn btn-primary col-4">Save</button>
+          <button type="button" class="btn btn-primary col-4" (click)="add()" *ngIf="mode === 'Add'">Add</button>
+          <button type="button" class="btn btn-primary col-4" (click)="update()" *ngIf="mode === 'Edit'">Update</button>
           <button type="button" class="btn btn-primary col-4" [routerLink]="['/']">Cancel</button>
         </div>        
       </div>      

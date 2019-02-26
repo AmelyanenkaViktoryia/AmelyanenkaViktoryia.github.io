@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Article } from './article.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,19 @@ export class ApiServiceService {
     return this.httpClient.get<any>(`http://localhost:8080/news`);
   }  
 
+  public getLocalArticle(id: string) {
+    return this.httpClient.get<any>(`http://localhost:8080/news/${id}`);
+  }  
+
   public removeLocalArticle(id: string) {
     return this.httpClient.delete<any>(`http://localhost:8080/news/${id}`);
   }  
+
+  public addArticle(article: Article) {
+    return this.httpClient.post<any>(`http://localhost:8080/news/`, article);
+  } 
+
+  public updateArticle(id: string, article: Article) {
+    return this.httpClient.put<any>(`http://localhost:8080/news/${id}`, article);
+  } 
 }
